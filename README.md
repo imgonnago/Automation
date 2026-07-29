@@ -1,8 +1,8 @@
-# Factory Automation System
+# 건양대학교 lab-corps 과제🌳: Factory Automation System🏭
 
 반도체 공장 자동화 시스템에서 롤러의 간격을 자동화 하는 시스템.
 
-## Code
+## 🧑‍💻Code
 **AutomationSystemCode.py**
 > spicy.optimize 에서 minimize를 사용해서 회귀함수를 구하는 코드. costfuntion은 mse를 사용
 
