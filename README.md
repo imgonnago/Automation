@@ -25,23 +25,45 @@
 ws_gap_diff result
 
 > p0(초기값): [0.001, 0.001, 0.001]
-> a=2.0001, b=-0.6496, c=-1.2391
-> MSE: 0.0365
+> a=0.5557, b=-6.2279, c=0.1378
+> MSE: 0.0111
 
 
 ds_gap_diff result
 
 > p0(초기값): [0.001, 0.001, 0.001]
-> a=0.0913, b=2.4640, c=0.0369
-> MSE: 0.0138
+> a=0.6260, b=-6.3376, c=0.1579
+> MSE: 0.0102
 
 ### Test
 ws_gap_diff model
 
->ws params: [ 2.00014131 -0.64956346 -1.239068  ]
->MSE: 0.0263
+> ws params: [ 0.55572231 -6.22794291  0.13776184]
+> MSE: 0.0074
 
 ds_gap_diff model
 
->ds params: [0.09134144 2.46399558 0.03687869]
->MSE: 0.0110
+> ds params: [ 0.62596188 -6.33760715  0.15785487]
+> MSE: 0.0119
+
+## 총정리
+[original data](<img width="640" height="480" alt="Image" src="https://github.com/user-attachments/assets/f4fd04e8-91d0-4d25-9833-48a4f8e2229d" />)
+> 초기 데이터 분포. 전체적으로 감소지수함수 형태의 모양을 하고있지만, y값들의 분포 차이가 커서 노이즈가 심함.
+
+[scaled data](<img width="640" height="480" alt="Image" src="https://github.com/user-attachments/assets/3757298b-2792-4b52-b7d7-6c7814eca2aa" />)
+> MinMaxScaler로 데이터 전체를 스케일링한 분포. 범위 자체만 0~1 사이의 값으로 바꿔서 데이터의 의미는 유지됨.
+
+[fitting model with test data](<img width="640" height="480" alt="Image" src="https://github.com/user-attachments/assets/48bc30d9-2f24-4fde-b1d3-ba42a5b5f1fb" />)
+> 피팅된 모델 그래프와 테스트 데이터 분포를 나타낸 그래프. 전체적으로 추세는 잘 잡았으나 데이터 자체에 y값 노이즈가 심해서 간단한 비선형 함수로는 좋은 예측이 불가함.
+
+---
+
+결론적으로 데이터 자체의 **노이즈**가 심해서 비선형회귀 모델로는 피팅이 불가함.
+
+MSE값이 낮게 나온건 데이터를 스케일링 해서 낮게 나온것.
+
+테스트 기준 ws RMSE: √0.0074 ≈ 0.086 → 역변환 ±86, ds RMSE: √0.0119 ≈ 0.109 → 역변환 ±109
+
+평균적으로 86~109 정도 오차가 있음.
+
+
