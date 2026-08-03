@@ -3,6 +3,7 @@ import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
+import joblib
 
 def data_load():
     data = pd.read_csv("/Users/joyongjae/Automation/TalkFile_generated_data.csv")
@@ -10,8 +11,9 @@ def data_load():
     scaler = MinMaxScaler()
 
     data_scaler = scaler.fit_transform(data)
+    joblib.dump(scaler, '/Users/joyongjae/Automation/params/scaler.pkl')
 
-    data_scaler = pd.DataFrame(data_scaler, columns=['ws_gap_diff', 'ds_gap_diff','idle_time'])
+    data_scaler = pd.DataFrame(data_scaler, columns=['idle_time', 'ws_gap_diff', 'ds_gap_diff'])
 
     print(data_scaler.info())
     print('='*50)
