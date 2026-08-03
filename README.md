@@ -56,6 +56,11 @@ ds_gap_diff model
 ![fitting model with test data](https://github.com/user-attachments/assets/48bc30d9-2f24-4fde-b1d3-ba42a5b5f1fb)
 > 피팅된 모델 그래프와 테스트 데이터 분포를 나타낸 그래프. 전체적으로 추세는 잘 잡았으나 데이터 자체에 y값 노이즈가 심해서 간단한 비선형 함수로는 좋은 예측이 불가함.
 
+![boxplot for outliers](https://github.com/user-attachments/assets/bb0a778d-86d9-4766-b99a-0dbbfbcec5a9)
+> 이상치를 제거 해볼까 생각했지만 boxplot에서 나타내는 outliers는 x와 y의 상관관계를 고려하지 않고 단순히 y값의 평균에서 IQR보다 크거나 작은 값을만 뽑아냄.
+> 그래서 여기 outliers들은 0<= x <=100 범위의 값들일 확률이 높음. 즉 정상적인 데이터들이 outliers로 표시됨.
+> 즉 더이상 데이터에 대해서 전처리 할 수 있는 방안이 없을것으로 판단함. 
+
 ---
 
 결론적으로 데이터 자체의 **노이즈**가 심해서 비선형회귀 모델로는 피팅이 불가함.
