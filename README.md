@@ -2,7 +2,7 @@
 
 반도체 공장 자동화 시스템에서 롤러의 간격을 자동화 하는 시스템.
 
-## 🧑‍💻Code
+## 🧑‍💻Code(비선형 회귀 모델)
 **AutomationSystemCode.py**
 > spicy.optimize 에서 minimize를 사용해서 회귀함수를 구하는 코드. costfuntion은 mse를 사용.
 > 최적 파라미터를 저장함
@@ -66,4 +66,10 @@ MSE값이 낮게 나온건 데이터를 스케일링 해서 낮게 나온것.
 
 평균적으로 86~109 정도 오차가 있음.
 
+## 머신러닝 모델
+XGB, lightgbm, randomforest, MLP 총 4가지 모델 사용.
 
+전처리는 X 데이터에만 StandardScaler로 사용.
+
+![machine learning result](https://github.com/user-attachments/assets/7834f58d-b1db-4bb2-a429-2a97daaeb24c)
+> xgboost가 성능적으로 제일 잘 나옴.
