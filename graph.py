@@ -6,6 +6,13 @@ import numpy as np
 data = pd.read_csv("/Users/joyongjae/Automation/TalkFile_generated_data.csv")
 train_ws_x, test_ws_x, train_ws_y, test_ws_y, train_ds_x, test_ds_x, train_ds_y, test_ds_y = data_load()
 
+def boxplot_old_data():
+    plt.boxplot([data['ws_gap_diff'], data['ds_gap_diff']], labels=['WS Gap Diff', 'DS Gap Diff'])
+    plt.ylabel('Gap Diff')
+    plt.title('Box Plot of WS Gap Diff and DS Gap Diff')
+    plt.savefig('/Users/joyongjae/Automation/BoxPlot.png')
+    plt.show()
+
 def plot_scatter_old_data():
     plt.scatter(data['idle_time'], data['ws_gap_diff'], label='WS Gap Diff', color='blue')
     plt.scatter(data['idle_time'], data['ds_gap_diff'], label='DS Gap Diff', color='orange')
@@ -46,6 +53,7 @@ def fitting_model_graph():
     plt.savefig('/Users/joyongjae/Automation/FittedModels.png')
     plt.show()
 
-plot_scatter_old_data()
+"""plot_scatter_old_data()
 plot_scatter_scaled_data()
-fitting_model_graph()
+fitting_model_graph()"""
+boxplot_old_data()
