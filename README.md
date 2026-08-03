@@ -48,18 +48,22 @@ ds_gap_diff model
 
 ## 총정리
 **1. Original data**
+
 ![original data](https://github.com/user-attachments/assets/f4fd04e8-91d0-4d25-9833-48a4f8e2229d)
 > 초기 데이터 분포. 전체적으로 감소지수함수 형태의 모양을 하고있지만, y값들의 분포 차이가 커서 노이즈가 심함.
 
 **2. Scaled data**
+
 ![scaled data](https://github.com/user-attachments/assets/3757298b-2792-4b52-b7d7-6c7814eca2aa)
 > MinMaxScaler로 데이터 전체를 스케일링한 분포. 범위 자체만 0~1 사이의 값으로 바꿔서 데이터의 의미는 유지됨.
 
 **3. Fitting model with test data**
+
 ![fitting model with test data](https://github.com/user-attachments/assets/48bc30d9-2f24-4fde-b1d3-ba42a5b5f1fb)
 > 피팅된 모델 그래프와 테스트 데이터 분포를 나타낸 그래프. 전체적으로 추세는 잘 잡았으나 데이터 자체에 y값 노이즈가 심해서 간단한 비선형 함수로는 좋은 예측이 불가함.
 
 **4. Boxplot for outliers**
+
 ![boxplot for outliers](https://github.com/user-attachments/assets/bb0a778d-86d9-4766-b99a-0dbbfbcec5a9)
 > 이상치를 제거 해볼까 생각했지만 boxplot에서 나타내는 outliers는 x와 y의 상관관계를 고려하지 않고 단순히 y값의 평균에서 IQR보다 크거나 작은 값을만 뽑아냄.
 > 그래서 여기 outliers들은 0<= x <=100 범위의 값들일 확률이 높음. 즉 정상적인 데이터들이 outliers로 표시됨.
