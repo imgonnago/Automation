@@ -6,12 +6,12 @@ import matplotlib.pyplot as plt
 import joblib
 
 def data_load():
-    data = pd.read_csv("/Users/zxfg0/Automation/TalkFile_generated_data.csv")
+    data = pd.read_csv("/Users/joyongjae/Automation/TalkFile_generated_data.csv")
 
     scaler = MinMaxScaler()
 
     data_scaler = scaler.fit_transform(data)
-    joblib.dump(scaler, '/Users/zxfg0/Automation/params/scaler.pkl')
+    joblib.dump(scaler, '/Users/joyongjae/Automation/params/scaler.pkl')
 
     data_scaler = pd.DataFrame(data_scaler, columns=['idle_time', 'ws_gap_diff', 'ds_gap_diff'])
 

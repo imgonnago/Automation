@@ -53,7 +53,32 @@ def fitting_model_graph():
     plt.savefig('/Users/joyongjae/Automation/FittedModels.png')
     plt.show()
 
-"""plot_scatter_old_data()
-plot_scatter_scaled_data()
-fitting_model_graph()"""
-boxplot_old_data()
+def models_results_graph():
+    df = pd.concat([pd.read_csv("/Users/joyongjae/Automation/params/metrics_exp_fit.csv"),
+                    pd.read_csv("/Users/joyongjae/Automation/params/metrics_ml.csv")])
+
+    models = ["Exponential Curve Fit", "XGBoost", "LightGBM", "Random Forest", "Neural Network (MLP)"]
+    labels = ["Exp", "XGB", "LGBM", "RF", "MLP"]
+    targets = {"ws_gap_diff": "#2a78d6", "ds_gap_diff": "#eb6834"}
+    plt.rcParams.update({"font.size": 10})
+
+    def draw(metric, ylabel, fname, fmt):
+        fig, ax = plt.subplots(figsize=(3.5, 2.6), dpi=300)
+        x = np.arange(len(models)); w = 0.38
+        for i, (t, c) in enumerate(targets.items()):
+            vals = [df[(df.Target == t) & (df.Model == m)][metric].iloc[0] for m in models]
+            bars = ax.bar(x + (i - 0.5) * (w + 0.02), vals, w, color=c, label=t)
+            ax.bar_label(bars, labels=[fmt.format(v) for v in vals], padding=1.5, fontsize=5.5)
+        ax.set_xticks(x, labels)
+        ax.set_ylabel(ylabel)
+        ax.margins(y=0.08)
+        ax.spines[["top", "right"]].set_visible(False)
+        ax.tick_params(length=0)
+        ax.legend(frameon=False, fontsize=8, ncol=2, loc="lower center", bbox_to_anchor=(0.5, 1.0))
+        fig.tight_layout(pad=0.3)
+        fig.savefig(fname, facecolor="white"); plt.close(fig)
+
+    draw("R2", "R²", "/Users/joyongjae/Automation/figure/r2_simple.png", "{:.3f}")
+    draw("WAPE", "WAPE (%)", "/Users/joyongjae/Automation/figure/wape_simple.png", "{:.1f}")
+
+models_results_graph()
